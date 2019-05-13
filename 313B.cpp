@@ -10,8 +10,7 @@ int main( ) {
 
    int a[s.size( ) + 1] = { };
    for (int i = 1; i < s.size( ); ++i) {
-      a[i] = (s[i] == s[i - 1]);
-      a[i] += a[i - 1];
+      a[i] += (s[i] == s[i - 1]) + a[i - 1];
    }
 
    int q;
