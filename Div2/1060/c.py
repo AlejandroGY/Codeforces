@@ -1,4 +1,7 @@
 from collections import defaultdict
+import io
+import os
+import sys
 
 
 def get_sieve(m):
@@ -29,14 +32,14 @@ def factor_distinct(num, sieve):
   return factors
 
 def main( ):
+  sieve = get_sieve(20**5 + 10)
+  input = io.BytesIO(os.read(0,os.fstat(0).st_size)).readline
+
   t = int(input( ))
   for tc in range(t):
     n = int(input( ))
     a = list(map(int, input( ).split( )))
     b = input( )
-
-    maximum = max(a) + 1
-    sieve = get_sieve(maximum)
 
     seen = defaultdict(int)
     primes = []
@@ -50,7 +53,7 @@ def main( ):
         if seen[p] >= 2:
           zero = True
     if zero:
-      print(0)
+      sys.stdout.write("0\n")
       continue
       
     one = False
@@ -64,9 +67,9 @@ def main( ):
       if one:
         break
     if one:
-      print(1)
+      sys.stdout.write("1\n")
     else:
-      print(2)
+      sys.stdout.write("2\n")
 
   
 if __name__ == "__main__":
